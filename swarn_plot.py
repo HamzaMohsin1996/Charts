@@ -1,4 +1,3 @@
-
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -19,7 +18,6 @@ participant_data = [
     [4, 3, 3, 3, 4, 7, 7, 1],
     [7, 7, 7, 7, 7, 7, 7, 7],
 ]
-
 
 # Create a list to hold the data for DataFrame
 data = []
@@ -52,6 +50,12 @@ for question in questions:
     # Add horizontal lines for min and max values
     plt.hlines(y=min_value, xmin=questions.index(question) - 0.2, xmax=questions.index(question) + 0.2, color='black', linestyle='-', linewidth=2)
     plt.hlines(y=max_value, xmin=questions.index(question) - 0.2, xmax=questions.index(question) + 0.2, color='black', linestyle='-', linewidth=2)
+
+# Calculate and plot trend line (mean values)
+mean_ratings = df.groupby('Question')['Rating'].mean()
+plt.plot(range(len(questions)), mean_ratings, marker='o', color='dodgerblue', linestyle='-', linewidth=2, markersize=8, label='Trend Line')
+
+# ...
 
 # Customize y-axis limits
 plt.ylim(1, 7)
